@@ -1,0 +1,62 @@
+<div class="user-form">
+  <form [formGroup]="form" class="form">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        formControlName="name"
+        id="name"
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        formControlName="email"
+        id="email"
+        class="form-control"
+      />
+    </div>
+    <button type="button" (click)="addUser(form.value)" class="btn btn-primary">
+      Adicionar
+    </button>
+    <br />
+    <button
+      type="button"
+      (click)="editUser(form.value)"
+      class="btn btn-primary"
+    >
+      Editar
+    </button>
+  </form>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let userInterador of user | async">
+        <td>{{ userInterador.name }}</td>
+        <td>{{ userInterador.email }}</td>
+        <td class="actions-container">
+          <button mat-icon-button (click)="editUser(userInterador)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            class="color-danger"
+            mat-icon-button
+            (click)="deleteUser(userInterador)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
